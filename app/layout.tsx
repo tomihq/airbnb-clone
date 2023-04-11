@@ -23,7 +23,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={font.className}>
         {/* Uncomment this if you have hydration errors <ClientOnly> */}
-          <Modal/>
+          <Modal isOpen title="Hello World" actionLabel="Submit"/>
           <Navbar/>
         {/* </ClientOnly> */}
         {children}
