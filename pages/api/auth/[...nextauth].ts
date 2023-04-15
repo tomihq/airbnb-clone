@@ -25,6 +25,7 @@ export const authOptions: AuthOptions = {
                 password: { label: 'password', type: 'password' },
             },
             async authorize(credentials){
+
                 if(!credentials?.email || !credentials?.password){
                     throw new Error('Credenciales erróneas')
                 }
@@ -34,6 +35,7 @@ export const authOptions: AuthOptions = {
                         email: credentials.email
                     }
                 })
+
 
                 if(!user || !user?.hashedPassword){
                     throw new Error('Credenciales erróneas')

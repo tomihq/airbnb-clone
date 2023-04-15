@@ -112,23 +112,7 @@ const LoginModal = () => {
           font-light
         '
       >
-        <div className='justify-center flex flex-row items-center gap-2'>
-          <div>
-            ¿Ya tienes una cuenta?
-          </div>
-
-          <div 
-            onClick={loginModal.onClose}
-            className="
-              text-neutral-800
-              cursor-pointer
-              hover:underline
-            "
-          >
-            Iniciar sesión
-          </div>
-          
-        </div>
+       
       </div>
     </div>
   )
