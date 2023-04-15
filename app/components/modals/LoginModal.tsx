@@ -60,6 +60,11 @@ const LoginModal = () => {
     })
   }
 
+  const toggle = useCallback(() => {
+    loginModal.onClose();
+    registerModal.onOpen();
+  }, [loginModal, registerModal])
+
   const bodyContent = (
     <div className='flex flex-col gap-4'>
       <Heading
@@ -112,7 +117,23 @@ const LoginModal = () => {
           font-light
         '
       >
-       
+        <div className='justify-center flex flex-row items-center gap-2'>
+          <div>
+            ¿Primera vez utilizando Airbnb?
+          </div>
+
+          <div 
+            onClick={toggle}
+            className="
+              text-neutral-800
+              cursor-pointer
+              hover:underline
+            "
+          >
+            Crear una cuenta
+          </div>
+          
+        </div>
       </div>
     </div>
   )
