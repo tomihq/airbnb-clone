@@ -8,6 +8,7 @@ import CategoryInput from "../inputs/CategoryInput";
 import { FieldValues, useForm } from "react-hook-form";
 import CountrySelect from "../inputs/CountrySelect";
 import dynamic from "next/dynamic";
+import Counter from "../inputs/Counter";
 
 enum STEPS {
   CATEGORY = 0,
@@ -48,6 +49,9 @@ const RentModal = () =>{
 
   const category = watch('category');
   const location = watch('location');
+  const guestCount = watch('guestCount');
+  const roomCount = watch('roomCount'); 
+  const bathroomCount = watch('bathroomCount'); 
 
   //Re-load map dynamically each time we change location
   const Map = useMemo(() => dynamic(() => import('../Map'), {
@@ -91,7 +95,7 @@ const RentModal = () =>{
   let bodyContent = (
     <div className="flex flex-col gap-8">
       <Heading
-        title="¿Cuál de estos describe mejor tu lugar?"
+        title="¿Cuál de estos describe mejor tu propiedad?"
         subtitle="Seleccione una categoría"
       />
       <div
@@ -123,7 +127,7 @@ const RentModal = () =>{
     bodyContent = (
       <div className="flex flex-col gap-8">
         <Heading
-          title="¿Dónde está ubicado tu lugar?"
+          title="¿Dónde está ubicado tu propiedad?"
           subtitle="¡Ayuda a los huéspedes a encontrarte!"
         />
         <CountrySelect
@@ -137,6 +141,38 @@ const RentModal = () =>{
     )
   }
 
+  if(step === STEPS.INFO){
+    bodyContent = (
+      <div className="flex flex-col gap-8">
+         <Heading
+          title="Comparte información básica acerca de tu propiedad"
+          subtitle="¿Qué comodidades tienes?"
+         />
+         <Counter
+            title="Cantidad de huéspedes"
+            subtitle="¿Cuantos huéspedes admite tu propiedad?"
+            value={guestCount}
+            onChange={(value) => setCustomValue('guestCount', value)}
+         />
+         <hr />
+         <Counter
+            title="Cantidad de habitaciones"
+            subtitle="¿Cuantas habitaciones posee tu propiedad?"
+            value={roomCount}
+            onChange={(value) => setCustomValue('roomCount', value)}
+         />
+         <hr />
+         <Counter
+            title="Cantidad de baños"
+            subtitle="¿Cuantos baños posee tu propiedad?"
+            value={bathroomCount}
+            onChange={(value) => setCustomValue('bathroomCount', value)}
+         />
+      </div>
+    )
+  }
+  
+  
   return (
     <Modal 
       isOpen={rentModal.isOpen}
